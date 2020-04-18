@@ -2,6 +2,9 @@ pipeline {
     agent { 
         label 'master' 
     }
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
+    }
     stages {
         stage('Print env') {
             steps {
@@ -11,7 +14,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    echo "${SONAR_RUNNER_HOME}"
+                    echo "${scannerHome}"
                 }
             }
         }
