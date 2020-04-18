@@ -6,15 +6,13 @@ pipeline {
         scannerHome = tool 'SonarQubeScanner'
     }
     stages {
-        stage('Print env') {
-            steps {
-                sh 'printenv'
-            }
-        }
         stage('Code Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    echo "${scannerHome}"
+                    withCredentials(bindings: [string(credentialsId: 'SonarQubeToken', variable: 'SONARQUBE_TOKEN')]) {
+                        echo "${scannerHome}"
+                        echo "${SONARQUBE_TOKEN}"
+                    }
                 }
             }
         }
