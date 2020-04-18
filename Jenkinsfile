@@ -3,9 +3,16 @@ pipeline {
         label 'master' 
     }
     stages {
+        stage('Print env') {
+            steps {
+                echo sh 'printenv'
+            }
+        }
         stage('Code Analysis') {
             steps {
-                echo "${SONAR_RUNNER_HOME}"
+                withSonarQubeEnv('SonarQube') {
+                    echo "${SONAR_RUNNER_HOME}"
+                }
             }
         }
     }
