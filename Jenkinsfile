@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Print env') {
             steps {
-                echo sh 'printenv'
+                sh 'printenv'
             }
         }
         stage('Code Analysis') {
