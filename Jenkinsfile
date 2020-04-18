@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Code Analysis') {
             steps {
-                echo '${SONAR_RUNNER_HOME}'
+                echo "${SONAR_RUNNER_HOME}"
             }
         }
     }
