@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Code Analysis') {
             steps {
-                echo environment.scannerHome
+                echo '${scannerHome}'
             }
         }
     }
